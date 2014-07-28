@@ -1,2 +1,1 @@
-axon-axopatch1D
-===============
+###Axon AxoPatch 1D Controller
