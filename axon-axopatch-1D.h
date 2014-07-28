@@ -51,26 +51,27 @@ class AxoPatch : public DefaultGUIModel {
 		virtual void update(DefaultGUIModel::update_flags_t);
 
 	private:
-		double iclamp_ai_gain; // (1 V / V)
-		double iclamp_ao_gain; // (2 nA / V) ...hmm
-		double izero_ai_gain; // (1 V / V)
+		double iclamp_ai_gain; // 1 V/V
+		double iclamp_ao_gain; // 2 nA/V) ...hmm
+		double izero_ai_gain; // 1 V/V
 		double izero_ao_gain; // No output
-		double vclamp_ai_gain; // 1 mV / pA
-		double vclamp_ao_gain; // 20 mV / V
+		double vclamp_ai_gain; // 1 mV/pA
+		double vclamp_ao_gain; // 20 mV/V
 
 		int input_channel, output_channel;
 		double output_gain, temp_gain, headstage_gain;
 		int amp_mode, temp_mode;
+		double command_sens;
 		
 		bool settings_changed;
 
 		DAQ::Device *device;
 	
-		QRadioButton *iclampButton, *vclampButton;
+		QRadioButton *iclampButton, *vclampButton, *izeroButton;
 		QButtonGroup *ampButtonGroup;
 		AxoPatchSpinBox *inputBox, *outputBox;
-		AxoPatchComboBox *headstageBox, *outputGainBox;
-		QLabel *ampModeLabel;
+		AxoPatchComboBox *headstageBox, *outputGainBox, *commandSensBox;
+//		QLabel *ampModeLabel;
 
 	private slots:
 		void updateMode(int);
@@ -78,4 +79,5 @@ class AxoPatch : public DefaultGUIModel {
 		void updateHeadstageGain(int);
 		void updateInputChannel(int);
 		void updateOutputChannel(int);
+		void updateCommandSens(int);
 };
