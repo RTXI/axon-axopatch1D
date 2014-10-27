@@ -1,7 +1,7 @@
 ###Axon AxoPatch 1D Controller
 
-**Requirements:** None
-**Limitations:** None
+**Requirements:** None  
+**Limitations:** None  
 
 ![Module GUI](axon-axopatch-1D.png)
 
