@@ -1,9 +1,9 @@
 PLUGIN_NAME = axon_axopatch1D
 
-HEADERS = axon-axopatch-1D.h 
+HEADERS = axon-axopatch1D.h 
 
-SOURCES = axon-axopatch-1D.cpp \
-			moc_axon-axopatch-1D.cpp 
+SOURCES = axon-axopatch1D.cpp \
+			moc_axon-axopatch1D.cpp 
 
 LIBS = 
 

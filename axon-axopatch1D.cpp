@@ -1,6 +1,6 @@
 #include <QtGui>
 #include <iostream>
-#include "axon-axopatch-1D.h"
+#include "axon-axopatch1D.h"
 
 // Create wrapper for QComboBox. Options go red when changed and black when 'Set DAQ' is hit.
 AxoPatchComboBox::AxoPatchComboBox(QWidget *parent) : QComboBox(parent) {
@@ -71,6 +71,7 @@ AxoPatch::AxoPatch(void) : DefaultGUIModel("AxoPatch 1D Controller", ::vars, ::n
 	customizeGUI();
 	update( INIT );
 	refresh();
+	QTimer::singleShot(0, this, SLOT(resizeMe()));
 };
 
 AxoPatch::~AxoPatch(void) {};
