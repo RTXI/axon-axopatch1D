@@ -1,4 +1,3 @@
-#include <QtGui>
 #include <iostream>
 #include "axon-axopatch1D.h"
 
@@ -10,13 +9,11 @@ AxoPatchComboBox::AxoPatchComboBox(QWidget *parent) : QComboBox(parent) {
 AxoPatchComboBox::~AxoPatchComboBox(void) {}
 
 void AxoPatchComboBox::blacken(void) {
-	palette.setColor(QPalette::Text, Qt::black);
-	this->setPalette(palette);
+	this->setStyleSheet("QComboBox { color:black; }");
 }
 
 void AxoPatchComboBox::redden(void) {
-	palette.setColor(QPalette::Text, Qt::red);
-	this->setPalette(palette);
+	this->setStyleSheet("QComboBox { color:red; }");
 }
 
 // Create wrapper for spinboxes. Function is analogous to AxoPatchComboBox
@@ -28,13 +25,11 @@ AxoPatchSpinBox::AxoPatchSpinBox(QWidget *parent) : QSpinBox(parent) {
 AxoPatchSpinBox::~AxoPatchSpinBox(void) {}
 
 void AxoPatchSpinBox::blacken(void) {
-	palette.setColor(QPalette::Text, Qt::black);
-	this->setPalette(palette);
+	this->setStyleSheet("QSpinBox { color:black; }");
 }
 
 void AxoPatchSpinBox::redden(void) {
-	palette.setColor(QPalette::Text, Qt::red);
-	this->setPalette(palette);
+	this->setStyleSheet("QSpinBox { color:red; }");
 }
 
 
@@ -121,7 +116,10 @@ void AxoPatch::update(DefaultGUIModel::update_flags_t flag) {
 			amp_mode = getParameter("Amplifier Mode").toInt();
 
 			updateDAQ();
-			updateGUI(); // only needed here because doLoad doesn't update the gui on its own. Yes, it does cause a bug with the headstage option, but it doesn't matter to anything other than whatever OCD tendencies we all probably have. You're welcome. -Ansel
+			updateGUI(); // Only needed here because doLoad doesn't update the gui on its own. 
+			             // Yes, it does cause a bug with the headstage option, but it doesn't 
+			             // matter to anything other than whatever OCD tendencies we all 
+			             // probably have. You're welcome. -Ansel
 
 			// blacken the GUI to reflect that changes have been saved to variables.
 			inputBox->blacken();

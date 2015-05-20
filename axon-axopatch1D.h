@@ -10,7 +10,6 @@ class AxoPatchComboBox : public QComboBox {
 		AxoPatchComboBox(QWidget * =0);
 		~AxoPatchComboBox(void);
 		void blacken(void);
-		QPalette palette;
 
 	public slots:
 		void redden(void);
@@ -25,7 +24,6 @@ class AxoPatchSpinBox : public QSpinBox {
 		AxoPatchSpinBox(QWidget * =0);
 		~AxoPatchSpinBox(void);
 		void blacken(void);
-		QPalette palette;
 
 	public slots:
 		void redden(void);
