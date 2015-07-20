@@ -40,13 +40,16 @@ extern "C" Plugin::Object * createRTXIPlugin(void) {
 };
 
 static DefaultGUIModel::variable_t vars[] = {
-	{ "Gain Telegraph", "", DefaultGUIModel::INPUT, }, // telegraph from DAQ used in 'Auto' mode
-	{ "Input Channel", "", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, }, 
-	{ "Output Channel", "", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, },
-	{ "Headstage Gain", "", DefaultGUIModel::PARAMETER | DefaultGUIModel::DOUBLE, }, 
-	{ "Command Sensitivity", "", DefaultGUIModel::PARAMETER | DefaultGUIModel::DOUBLE, },
-	{ "Output Gain", "", DefaultGUIModel::PARAMETER | DefaultGUIModel::DOUBLE, }, 
-	{ "Amplifier Mode", "", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, },
+	{ "Gain Telegraph", "Input telegraph", DefaultGUIModel::INPUT, }, // telegraph from DAQ used in 'Auto' mode
+	{ "Input Channel", "Input channel (#)", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, }, 
+	{ "Output Channel", "Output channel (#)", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, },
+	{ "Headstage Gain", "Headstage gain configuration setting", 
+	  DefaultGUIModel::PARAMETER | DefaultGUIModel::DOUBLE, }, 
+	{ "Command Sensitivity", "Command sensitivity setting", 
+	  DefaultGUIModel::PARAMETER | DefaultGUIModel::DOUBLE, },
+	{ "Output Gain", "Scaled output gain setting", DefaultGUIModel::PARAMETER | DefaultGUIModel::DOUBLE, }, 
+	{ "Amplifier Mode", "Amplifier mode (vclamp, iclamp, or i=0)", 
+	   DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, },
 };
 
 static size_t num_vars = sizeof(vars) / sizeof(DefaultGUIModel::variable_t);
@@ -60,7 +63,7 @@ static void getDevice(DAQ::Device *d, void *p) {
 
 // Just the constructor. 
 AxoPatch::AxoPatch(void) : DefaultGUIModel("AxoPatch 1D Controller", ::vars, ::num_vars) {
-	setWhatsThis("<p>Yeah, I'll get to this later... <br>-Ansel</p>");
+	setWhatsThis("<p>Amplifier control module to compensate for scaling properties of the Axon AxoPatch 1D controller. This module essentially acts as an interface that replicates functionality of the control panel, but instead of manually setting gains, etc., you can do it at the press of a button. Note that you will still have to activate the channels via the control panel, though. .</p>");
 	DefaultGUIModel::createGUI(vars, num_vars);
 	initParameters();
 	customizeGUI();
