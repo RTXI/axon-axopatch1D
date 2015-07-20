@@ -40,7 +40,7 @@ extern "C" Plugin::Object * createRTXIPlugin(void) {
 };
 
 static DefaultGUIModel::variable_t vars[] = {
-	{ "Gain Telegraph", "Input telegraph", DefaultGUIModel::INPUT, }, // telegraph from DAQ used in 'Auto' mode
+	{ "Gain Telegraph", "Input gain telegraph for auto mode", DefaultGUIModel::INPUT, }, // telegraph from DAQ used in 'Auto' mode
 	{ "Input Channel", "Input channel (#)", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, }, 
 	{ "Output Channel", "Output channel (#)", DefaultGUIModel::PARAMETER | DefaultGUIModel::INTEGER, },
 	{ "Headstage Gain", "Headstage gain configuration setting", 
@@ -76,7 +76,7 @@ AxoPatch::~AxoPatch(void) {};
 
 void AxoPatch::initParameters(void) {
 	input_channel = 0;
-	output_channel = 1;
+	output_channel = 0;
 	amp_mode = 1;
 	output_gain = headstage_gain = 1;
 	command_sens = 20;
@@ -134,26 +134,28 @@ void AxoPatch::update(DefaultGUIModel::update_flags_t flag) {
 
 		// disable the all the buttons in Auto mode. Auto mode does everything on its own.
 		case PAUSE:
-			inputBox->setEnabled(true);
-			outputBox->setEnabled(true);
+//			inputBox->setEnabled(true);
+//			outputBox->setEnabled(true);
 			outputGainBox->setEnabled(true);
-			headstageBox->setEnabled(true);
-			commandSensBox->setEnabled(true);
-			iclampButton->setEnabled(true);
-			vclampButton->setEnabled(true);
-			modifyButton->setEnabled(true);
+//			headstageBox->setEnabled(true);
+//			commandSensBox->setEnabled(true);
+//			iclampButton->setEnabled(true);
+//			izeroButton->setEnabled(true);
+//			vclampButton->setEnabled(true);
+//			modifyButton->setEnabled(true);
 			break;
 		
 		//when unpaused, return gui functionality to the user.
 		case UNPAUSE:
-			inputBox->setEnabled(false);
-			outputBox->setEnabled(false);
+//			inputBox->setEnabled(false);
+//			outputBox->setEnabled(false);
 			outputGainBox->setEnabled(false);
-			commandSensBox->setEnabled(false);
-			headstageBox->setEnabled(false);
-			iclampButton->setEnabled(false);
-			vclampButton->setEnabled(false);
-			modifyButton->setEnabled(false);
+//			commandSensBox->setEnabled(false);
+//			headstageBox->setEnabled(false);
+//			iclampButton->setEnabled(false);
+//			izeroButton->setEnabled(false);
+//			vclampButton->setEnabled(false);
+//			modifyButton->setEnabled(false);
 			break;
 
 		default:
@@ -171,7 +173,7 @@ void AxoPatch::execute(void) {
 	else if (input(0) <= 2.2) temp_gain = 10.0;
 	else if (input(0) <= 2.6) temp_gain = 20.0;
 	else if (input(0) <= 3.0) temp_gain = 50.0;
-	else output_gain = 100.0;
+	else temp_gain = 100.0;
 
 	if (temp_gain != output_gain) {
 		settings_changed = true;
@@ -495,6 +497,7 @@ void AxoPatch::refresh(void) {
 				outputGainBox->setCurrentIndex(7);
 			} else {
 				outputGainBox->setCurrentIndex(0);
+				std::cout<<"ERROR: default case called in AxoPatch::refresh()"<<std::endl;
 			}
 			outputGainBox->setEnabled(false);
 		
