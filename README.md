@@ -18,12 +18,12 @@ Amplifier control module to compensate for scaling properties of the Axon AxoPat
 None
 
 ####Parameters
-1. Input Channel
-2. Output Channel 
-3. Headstage Gain
-4. Command Sensitivity
-5. Output Gain
-6. Amplifier Mode
+1. Input Channel - input channel to scale (#)
+2. Output Channel - output channel to scale (#)
+3. Headstage Gain - gain set by the headstage
+4. Command Sensitivity - sensitivity setting from amplifier (mV/V)
+5. Output Gain - output gain from amplifier
+6. Amplifier Mode - mode setting on the amplifier (vclamp, iclamp, or i=0)
 
 ####States
 None
